@@ -26,6 +26,7 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
 
       - run: whereis npm
+      - run: sudo npm install pm2 -g
       - run: whereis pm2
       # - name: Install dependencies
       #   run: npm install
