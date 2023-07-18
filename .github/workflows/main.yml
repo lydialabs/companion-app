@@ -4,7 +4,7 @@ name: Push-to-EC2
 on:
   push:
     branches:
-      - main
+      - feat/interact-with-blockchain
 
 jobs:
   deploy:
@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
+        with:
+          ref: feat/interact-with-blockchain
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
@@ -30,7 +32,7 @@ jobs:
         run: npm run build
 
       - name: Stop existing Next.js application
-        run: /usr/local/bin/pm2 stop all || true
+        run: pm2 stop all || true
 
       - name: Start new Next.js application with PM2
-        run: /usr/local/bin/pm2 start npm --name "companions-app" -- start
+        run: pm2 start npm --name "companions-app" -- start
