@@ -1,5 +1,6 @@
 "use client";
 import { DAppProvider, Goerli } from '@usedapp/core'
+import Navbar from "@/components/Navbar";
 import { Chatbox } from './Chatbox'
 
 const config = {
@@ -16,8 +17,13 @@ const config = {
     gasLimitBufferPercentage: 10,
 }
 
-export const AIWaifuSection = () => {
+interface AIWaifuSectionProps {
+    userId: any
+}
+
+export const AIWaifuSection = ({ userId }: AIWaifuSectionProps) => {
     return <DAppProvider config={config}>
+        <Navbar userId={userId} />
         <Chatbox />
     </DAppProvider>
 }

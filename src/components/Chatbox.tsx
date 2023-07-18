@@ -1,5 +1,5 @@
 
-import Image from "next/image"; import { useWalletConnect } from '@/hooks/useConnectWallet'
+import Image from "next/image";
 import { useGetHairStyle } from '@/hooks/useGetHairStyle'
 import { useContractFunction } from '@/hooks/useContractFunction'
 import { contract } from '@/utils/constants'
@@ -14,8 +14,7 @@ function incrementNumber(initial: number, max = 6) {
 }
 
 export const Chatbox = () => {
-    const { account, activateBrowserWallet } = useWalletConnect()
-    const { hairstyle } = useGetHairStyle()
+    const { emotion } = useGetHairStyle()
 
     const { send } = useContractFunction({
         args: [
@@ -33,22 +32,20 @@ export const Chatbox = () => {
         },
     })
 
-    return <div style={{ marginTop: '200px' }}>
-        <button onClick={() => activateBrowserWallet()}>Connect wallet</button>
-        <br />
-        {account}
-        <br />
-        <button onClick={() => send(1, incrementNumber(hairstyle))}>Change hair style</button>
-
-
-        {hairstyle && <Image
+    return <div style={{ marginTop: '100px', width: '400px', height: 'auto', border: '1px black solid', borderRadius: '8px', overflow: 'hidden', backgroundColor: 'white' }}>
+        {emotion && <Image
             width={0}
             height={0}
             sizes="100vw"
-            className="mx-auto h-60 w-60 flex-shrink-0"
-            src={'/hairstyles/' + hairstyle + '.png'}
+            className="mx-auto flex-shrink-0"
+            style={{ width: '400px' }}
+            src={'/emotions/waifu_emotion_' + emotion + '.png'}
             alt=""
+
         />}
+
+        <input type="text" placeholder="Talk about anything..." style={{ display: 'block', width: '90%', border: '1px black solid', borderRadius: '15px', margin: '20px auto 0' }} />
+        <button onClick={() => send(1, incrementNumber(emotion))} style={{ margin: '10px 20px', textDecoration: 'underline', fontSize: '12px', float: 'right' }}>Trigger facial expressions change</button>
 
     </div>
 }
