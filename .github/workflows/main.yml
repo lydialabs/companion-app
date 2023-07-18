@@ -35,7 +35,7 @@ jobs:
       #   run: npm run build
 
       - name: Stop existing Next.js application
-        run: /home/ubuntu/.nvm/versions/node/v18.12.0/bin/pm2 stop all || true
+        run: pm2 stop all || true
 
       - name: Start new Next.js application with PM2
-        run: /home/ubuntu/.nvm/versions/node/v18.12.0/bin/pm2 start npm --name "companions-app" -- start
+        run: pm2 start npm --name "companions-app" -- start && pm2 save
