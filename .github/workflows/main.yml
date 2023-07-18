@@ -4,7 +4,7 @@ name: Push-to-EC2
 on:
   push:
     branches:
-      - feat/interact-with-blockchain
+      - feat/test-ci-cd
 
 jobs:
   deploy:
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v2
         with:
-          ref: feat/interact-with-blockchain
+          ref: feat/test-ci-cd
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
