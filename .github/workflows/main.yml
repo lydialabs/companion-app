@@ -26,11 +26,12 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
 
       - run: whereis npm
-      - name: Install dependencies
-        run: npm install
+      - run: whereis pm2
+      # - name: Install dependencies
+      #   run: npm install
 
-      - name: Build Next.js application
-        run: npm run build
+      # - name: Build Next.js application
+      #   run: npm run build
 
       - name: Stop existing Next.js application
         run: /home/ubuntu/.nvm/versions/node/v18.12.0/bin/pm2 stop all || true
