@@ -31,14 +31,8 @@ jobs:
       - name: Build Next.js application
         run: npm run build
 
-      - name: Install PM2
-        run: npm install pm2
+      - name: Stop existing Next.js application
+        run: /home/ubuntu/.nvm/versions/node/v18.12.0/bin/pm2 stop all || true
 
-      - name: Grant permisson for pm2.sh
-        run: chmod +x ./pm2.sh
-
-      - name: Run pm2.sh
-        run: bash ./pm2.sh
-
-      - name: Check pm2 status
-        run: pm2 status
+      - name: Start new Next.js application with PM2
+        run: /home/ubuntu/.nvm/versions/node/v18.12.0/bin/pm2 start npm --name "companions-app" -- start
