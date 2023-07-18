@@ -8,8 +8,8 @@ import { useGetEmotionByText } from "@/hooks/useGetEmotionByText";
 import { contract } from "@/utils/constants";
 
 const example = {
-    name: "Alex",
-    title: "I love talking about books and games",
+    name: "Waifu",
+    title: "I love talking about books",
     imageUrl: "/alex.png",
     llm: "chatgpt",
     phone: "OPTIONAL_COMPANION_PHONE_NUMBER",
