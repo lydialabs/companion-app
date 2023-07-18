@@ -31,8 +31,11 @@ jobs:
       - name: Build Next.js application
         run: npm run build
 
+      - name: Install PM2
+        run: npm install pm2
+
       - name: Stop existing Next.js application
-        run: pm2 stop all || true
+        run: ./node_modules/.bin/pm2 stop all || true
 
       - name: Start new Next.js application with PM2
-        run: pm2 start npm --name "companions-app" -- start
+        run: ./node_modules/.bin/pm2 start npm --name "companions-app" -- start
