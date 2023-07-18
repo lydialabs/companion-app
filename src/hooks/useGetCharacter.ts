@@ -1,7 +1,7 @@
 import { useCall } from '@usedapp/core'
 import { contract } from '@/utils/constants'
 
-export const useGetHairStyle = () => {
+export const useGetCharacter = () => {
     const { value, error } =
         useCall({
             contract: contract,

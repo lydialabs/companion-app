@@ -1,17 +1,11 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { useCompletion } from "ai/react";
-import { useGetHairStyle } from "@/hooks/useGetHairStyle";
+import { useGetCharacter } from "@/hooks/useGetCharacter";
 import { useContractFunction } from "@/hooks/useContractFunction";
-import { contract } from "@/utils/constants";
+import { useGetEmotionByText } from "@/hooks/useGetEmotionByText";
 
-function incrementNumber(initial: number, max = 6) {
-    if (initial === max) {
-        return 1;
-    } else {
-        return initial + 1;
-    }
-}
+import { contract } from "@/utils/constants";
 
 const example = {
     name: "Alex",
@@ -22,7 +16,7 @@ const example = {
 };
 
 export const Chatbox = () => {
-    const { emotion } = useGetHairStyle();
+    const { emotion } = useGetCharacter();
 
     let {
         completion,
@@ -37,6 +31,8 @@ export const Chatbox = () => {
         api: "/api/" + example.llm,
         headers: { name: example.name },
     });
+
+    const emotionByText = useGetEmotionByText(completion)
 
     useEffect(() => {
         if (completion) {
@@ -81,7 +77,7 @@ export const Chatbox = () => {
                     sizes="100vw"
                     className="mx-auto flex-shrink-0"
                     style={{ width: "400px" }}
-                    src={"/emotions/waifu_emotion_" + emotion + ".png"}
+                    src={"/emotions/waifu_emotion_" + (emotionByText || emotion) + ".png"}
                     alt=""
                 />
             )}
@@ -130,7 +126,7 @@ export const Chatbox = () => {
                 />
             </form>
             <button
-                onClick={() => send(1, incrementNumber(emotion))}
+                onClick={() => send(1, emotionByText || emotion)}
                 style={{
                     margin: "10px 20px",
                     textDecoration: "underline",
@@ -138,7 +134,7 @@ export const Chatbox = () => {
                     float: "right",
                 }}
             >
-                Trigger facial expressions change
+                Capture this facial expressions
             </button>
         </div>
     );
