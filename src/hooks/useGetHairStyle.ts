@@ -12,6 +12,6 @@ export const useGetHairStyle = () => {
         console.error(error.message)
     }
 
-    return { name: value?.[0], emotion: value?.[1], hairstyle: value?.[2] }
+    return { name: value?.[0], emotion: value?.[2], hairstyle: value?.[1] }
 
 }
