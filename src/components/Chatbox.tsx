@@ -5,7 +5,7 @@ import { useContractFunction } from '@/hooks/useContractFunction'
 import { contract } from '@/utils/constants'
 
 
-function incrementNumber(initial: number, max = 7) {
+function incrementNumber(initial: number, max = 6) {
     if (initial === max) {
         return 1
     } else {
@@ -20,7 +20,7 @@ export const Chatbox = () => {
     const { send } = useContractFunction({
         args: [
             contract,
-            'getHaircut',
+            'updateEmotion',
             {
                 transactionName: 'wrap',
             },
