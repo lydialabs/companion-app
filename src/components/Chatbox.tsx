@@ -54,10 +54,10 @@ export const Chatbox = () => {
             },
         ],
         onSuccess() {
-            window.alert("Successfully approved.");
+            window.alert("Successfully changed.");
         },
         onError() {
-            window.alert("Approve transaction failed");
+            window.alert("Transaction failed");
         },
     });
 
