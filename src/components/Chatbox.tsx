@@ -86,6 +86,7 @@ export const Chatbox = () => {
         <div
           className="chat-bubble"
           style={{
+            fontSize: '14px',
             position: "absolute",
             padding: "20px",
             top: "230px",
