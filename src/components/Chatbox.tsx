@@ -32,7 +32,11 @@ export const Chatbox = () => {
     headers: { name: example.name },
   });
 
-  const emotionByText = useGetEmotionByText(completion);
+  const { emotionByText, fetchingEmotion } = useGetEmotionByText(completion);
+  console.log('v1')
+
+  const emotionNumber =
+    !fetchingEmotion && emotionByText ? emotionByText : emotion;
 
   useEffect(() => {
     if (completion) {
@@ -71,7 +75,7 @@ export const Chatbox = () => {
       }}
     >
       {emotion && (
-        <div className={completion ? "up-and-down" : ""}>
+        <div className={completion && !fetchingEmotion ? "up-and-down" : ""}>
           <Image
             width={0}
             height={0}
@@ -79,14 +83,14 @@ export const Chatbox = () => {
             className={"mx-auto flex-shrink-0"}
             style={{ width: "400px" }}
             src={
-              "/emotions/waifu_emotion_" + (emotionByText || emotion) + ".png"
+              "/emotions/waifu_emotion_" + (emotionNumber) + ".png"
             }
             alt=""
           />
         </div>
       )}
 
-      {completion && (
+      {completion && !fetchingEmotion && (
         <div
           className="chat-bubble"
           style={{
@@ -100,7 +104,7 @@ export const Chatbox = () => {
             borderRadius: "10px",
             backgroundColor: "white",
             zIndex: 2,
-            color: 'black',
+            color: "black",
           }}
         >
           {completion}
@@ -128,19 +132,19 @@ export const Chatbox = () => {
             borderRadius: "15px",
             margin: "auto",
             padding: "10px",
-            color: 'black',
+            color: "black",
           }}
         />
       </form>
       <button
-        onClick={() => send(1, emotionByText || emotion)}
+        onClick={() => send(1, emotionNumber)}
         disabled={mining}
         style={{
           margin: "10px 20px",
           textDecoration: "underline",
           fontSize: "12px",
           float: "right",
-          color: "black"
+          color: "black",
         }}
       >
         {mining ? "Saving..." : "Save this facial expression"}
