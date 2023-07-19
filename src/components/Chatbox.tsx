@@ -39,7 +39,7 @@ export const Chatbox = () => {
       setInput("");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [completion, isLoading]);
+  }, [completion]);
 
   const { send, mining } = useContractFunction({
     args: [
@@ -71,22 +71,26 @@ export const Chatbox = () => {
       }}
     >
       {emotion && (
-        <Image
-          width={0}
-          height={0}
-          sizes="100vw"
-          className="mx-auto flex-shrink-0"
-          style={{ width: "400px" }}
-          src={"/emotions/waifu_emotion_" + (emotionByText || emotion) + ".png"}
-          alt=""
-        />
+        <div className={completion ? "up-and-down" : ""}>
+          <Image
+            width={0}
+            height={0}
+            sizes="100vw"
+            className={"mx-auto flex-shrink-0"}
+            style={{ width: "400px" }}
+            src={
+              "/emotions/waifu_emotion_" + (emotionByText || emotion) + ".png"
+            }
+            alt=""
+          />
+        </div>
       )}
 
       {completion && (
         <div
           className="chat-bubble"
           style={{
-            fontSize: '14px',
+            fontSize: "14px",
             position: "absolute",
             padding: "20px",
             top: "230px",

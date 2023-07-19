@@ -27,3 +27,19 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.up-and-down {
+  animation: moveUpDown 1s alternate;
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
