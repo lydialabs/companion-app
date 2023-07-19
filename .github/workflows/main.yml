@@ -1,36 +1,17 @@
-name: Push-to-EC2
-
-# Trigger deployment only on push to master branch
-on:
-  push:
-    branches:
-      - main
-
+name: TruffleHog Secrets Scan
+on: [pull_request]
 jobs:
-  deploy:
-    name: Deploy to EC2 on master branch push
+  TruffleHog:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout the files
-        uses: actions/checkout@v2
-
-      - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.HOST_DNS }}
-          REMOTE_USER: ${{ secrets.USERNAME }}
-          TARGET: ${{ secrets.TARGET_DIR }}
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Next.js application
-        run: npm run build
-
-      - name: Stop existing Next.js application
-        run: /usr/local/bin/pm2 stop all || true
-
-      - name: Start new Next.js application with PM2
-        run: /usr/local/bin/pm2 start npm --name "companions-app" -- start
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: TruffleHog OSS
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --debug --only-verified
