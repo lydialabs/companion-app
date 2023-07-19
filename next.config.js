@@ -30,20 +30,7 @@ const nextConfig = {
         pathname: "**",
       },
     ],
-  },
-  async headers() {
-    return [
-      {
-        source: "/api/:path*",
-        headers: [
-          {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin",
-          },
-        ],
-      },
-    ];
-  },
+  }
 };
 
 module.exports = nextConfig;
