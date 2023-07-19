@@ -140,6 +140,7 @@ export const Chatbox = () => {
           textDecoration: "underline",
           fontSize: "12px",
           float: "right",
+          color: "black"
         }}
       >
         {mining ? "Saving..." : "Save this facial expression"}
