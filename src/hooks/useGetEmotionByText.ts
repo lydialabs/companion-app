@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const emotions = { joy: 1, sadness: 2, love: 3, surprise: 4, fear: 5, anger: 6 }
+export const emotions = { joy: 1, sadness: 2, love: 3, surprise: 4, fear: 5, anger: 6 }
 
 export const useGetEmotionByText = (text: any) => {
     const [emotionByText, setEmotionByText] = useState(null)

@@ -1,9 +1,35 @@
 import Image from "next/image";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useCompletion } from "ai/react";
 import { useGetCharacter } from "@/hooks/useGetCharacter";
 import { useContractFunction } from "@/hooks/useContractFunction";
-import { useGetEmotionByText } from "@/hooks/useGetEmotionByText";
+import { useGetEmotionByText, emotions } from "@/hooks/useGetEmotionByText";
+
+function swapKeysAndValues(obj: any) {
+  const swapped = {};
+  for (const key in obj) {
+    //@ts-ignore
+    swapped[obj[key]] = key;
+  }
+  return swapped;
+}
+
+function cloneEventObj(eventObj: any) {
+  const overrideObj = {};
+
+  function EventCloneFactory(overProps: any) {
+    for (var x in overProps) {
+      //@ts-ignore
+      this[x] = overProps[x];
+    }
+  }
+
+  EventCloneFactory.prototype = eventObj;
+  //@ts-ignore
+  return new EventCloneFactory(overrideObj);
+}
+
+let tempEvent: any = null;
 
 import { contract } from "@/utils/constants";
 
@@ -47,6 +73,13 @@ export const Chatbox = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [completion]);
 
+  useEffect(() => {
+    if (input?.startsWith("(Alice") && tempEvent) {
+      handleSubmit(tempEvent);
+      setInput(input?.split(") ")?.[1]);
+    }
+  }, [input]);
+
   const { send, mining } = useContractFunction({
     args: [
       contract,
@@ -84,7 +117,9 @@ export const Chatbox = () => {
             sizes="100vw"
             className={"mx-auto flex-shrink-0"}
             style={{ width: "400px" }}
-            src={"/emotions/waifu_emotion_" + (emotionByText || emotion) + ".png"}
+            src={
+              "/emotions/waifu_emotion_" + (emotionByText || emotion) + ".png"
+            }
             alt=""
           />
         </div>
@@ -112,7 +147,22 @@ export const Chatbox = () => {
       )}
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={async (event) => {
+          tempEvent = cloneEventObj(event);
+
+          if (emotionByText) {
+            handleSubmit(event);
+          } else {
+            event.preventDefault();
+            const chatText = !emotionByText
+              ? `(Alice's current emotion is ${
+                  //@ts-ignore
+                  swapKeysAndValues(emotions)[emotionNumber]
+                }) ` + input
+              : input;
+            setInput(chatText);
+          }
+        }}
         style={{
           display: "block",
           width: "100%",
