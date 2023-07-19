@@ -100,6 +100,7 @@ export const Chatbox = () => {
             borderRadius: "10px",
             backgroundColor: "white",
             zIndex: 2,
+            color: 'black',
           }}
         >
           {completion}

@@ -59,6 +59,19 @@
 		"inputs": [
 			{
 				"indexed": true,
+				"internalType": "string",
+				"name": "baseURI",
+				"type": "string"
+			}
+		],
+		"name": "BaseURIUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
 				"internalType": "uint256",
 				"name": "tokenId",
 				"type": "uint256"
@@ -70,7 +83,7 @@
 				"type": "uint8"
 			}
 		],
-		"name": "Emotion",
+		"name": "EmotionUpdate",
 		"type": "event"
 	},
 	{
@@ -90,6 +103,25 @@
 			}
 		],
 		"name": "Haircut",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
 		"type": "event"
 	},
 	{
@@ -197,6 +229,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "HAIRSTYLE_BOB",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "HAIRSTYLE_LONG",
 		"outputs": [
 			{
@@ -224,6 +269,32 @@
 	{
 		"inputs": [],
 		"name": "HAIRSTYLE_SHORT",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "HAIRSTYLE_SHORT_TWINTAIL",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "HAIRSTYLE_TWINTAIL_DRILL",
 		"outputs": [
 			{
 				"internalType": "uint8",
@@ -266,6 +337,19 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "baseURI",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -346,6 +430,19 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -362,6 +459,13 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -436,6 +540,19 @@
 	{
 		"inputs": [
 			{
+				"internalType": "string",
+				"name": "_newBaseURI",
+				"type": "string"
+			}
+		],
+		"name": "setBaseURI",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "bytes4",
 				"name": "interfaceId",
 				"type": "bytes4"
@@ -469,7 +586,7 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "tokenId",
+				"name": "_tokenId",
 				"type": "uint256"
 			}
 		],
@@ -503,6 +620,19 @@
 			}
 		],
 		"name": "transferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
