@@ -32,8 +32,10 @@ export const Chatbox = () => {
     headers: { name: example.name },
   });
 
-  const { emotionByText, fetchingEmotion } = useGetEmotionByText(completion);
-  console.log('v1')
+  const { emotionByText, fetchingEmotion } = useGetEmotionByText(
+    completion.replace("Alice: ", "")
+  );
+  console.log("v1");
 
   const emotionNumber =
     !fetchingEmotion && emotionByText ? emotionByText : emotion;
@@ -82,9 +84,7 @@ export const Chatbox = () => {
             sizes="100vw"
             className={"mx-auto flex-shrink-0"}
             style={{ width: "400px" }}
-            src={
-              "/emotions/waifu_emotion_" + (emotionNumber) + ".png"
-            }
+            src={"/emotions/waifu_emotion_" + (emotionByText || emotion) + ".png"}
             alt=""
           />
         </div>

@@ -22,7 +22,7 @@ export default function Navbar({ userId }: NavbarProps) {
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-start">
             <div className="flex flex-shrink-0 items-center text-white">
-              AIWaifu
+             Virtual companion on chain
             </div>
             <div className="ml-6">
               <div className="flex space-x-2 sm:space-x-4">
