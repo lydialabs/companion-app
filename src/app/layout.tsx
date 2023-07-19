@@ -5,8 +5,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "AIWaifu",
-  description: "Chat with AIWaifu",
+  title: "Virtual companion on chain",
+  description: "Virtual companion on chain",
 };
 
 export default function RootLayout({
