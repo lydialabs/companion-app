@@ -1,43 +1,28 @@
+"use client";
 import { UserButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
-const navigation = [
-  {
-    name: "About",
-    href: "https://github.com/a16z-infra/companion-app",
-    current: false,
-  },
-];
+
+import { Wallet } from './Wallet'
+
+const navigation: any[] = [];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar() {
-  const { userId } = auth();
+interface NavbarProps {
+  userId: any
+}
+
+export default function Navbar({ userId }: NavbarProps) {
   return (
     <div className="bg-gray-900 w-full fixed top-0 z-10">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-start">
-            <div className="flex flex-shrink-0 items-center">
-              <Image
-                width={0}
-                height={0}
-                sizes="100vw"
-                className="block h-8 w-auto lg:hidden rounded-lg"
-                src="https://avatars.githubusercontent.com/u/745163?s=200&v=4"
-                alt="a16z"
-              />
-              <Image
-                width={0}
-                height={0}
-                sizes="100vw"
-                className="hidden h-8 w-auto lg:block rounded-lg"
-                src="https://avatars.githubusercontent.com/u/745163?s=200&v=4"
-                alt="a16z"
-              />
+            <div className="flex flex-shrink-0 items-center text-white">
+              AIWaifu
             </div>
             <div className="ml-6">
               <div className="flex space-x-2 sm:space-x-4">
@@ -56,19 +41,10 @@ export default function Navbar() {
                     {item.name}
                   </a>
                 ))}
-                <div className="px-3 py-2 text-gray-300">
-                  <iframe
-                    src="https://ghbtns.com/github-btn.html?user=a16z-infra&repo=companion-app&type=star&count=true"
-                    frameBorder="0"
-                    scrolling="0"
-                    width="150"
-                    height="20"
-                    title="GitHub"
-                  ></iframe>
-                </div>
               </div>
             </div>
           </div>
+          <Wallet />
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             {userId ? (
               <UserButton afterSignOutUrl="/" />

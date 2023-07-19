@@ -1,7 +1,14 @@
 [
   {
-    "name": "Alex",
+    "name": "Alice",
     "title": "I love talking about books and games",
+    "imageUrl": "/alex.png",
+    "llm": "chatgpt",
+    "phone": "OPTIONAL_COMPANION_PHONE_NUMBER"
+  },
+  {
+    "name": "Waifu",
+    "title": "I love talking about books",
     "imageUrl": "/alex.png",
     "llm": "chatgpt",
     "phone": "OPTIONAL_COMPANION_PHONE_NUMBER"
