@@ -127,6 +127,7 @@ export const Chatbox = () => {
             borderRadius: "15px",
             margin: "auto",
             padding: "10px",
+            color: 'black',
           }}
         />
       </form>
